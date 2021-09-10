@@ -1,0 +1,16 @@
+<VirtualHost *:{{ http_port }}>
+    ServerAdmin {{ contato }}
+    ServerName {{ server_name }}
+    DocumentRoot /var/www/{{ http_host }}
+    ErrorLog ${APACHE_LOG_DIR}/{{ http_host }}.error.log
+    CustomLog ${APACHE_LOG_DIR}/{{ http_host }}.access.log combined
+
+    <Directory /var/www/{{ http_host }}>
+          Options -Indexes
+    </Directory>
+
+    <IfModule mod_dir.c>
+        DirectoryIndex index.php index.html index.cgi index.pl  index.xhtml index.htm
+    </IfModule>
+
+</VirtualHost>

@@ -1,0 +1,21 @@
+---
+
+### MYSQL MOODLE BASE ###
+
+#Cria a Base
+- name: MYSQL> Criando a Base de Dados do Moodle
+  mysql_db:
+    name: "{{ moodle_db_name }}"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+#Cria o usuario do banco
+- name: MYSQL> Criando o Usuario do Moodle para Gerir a Base
+  mysql_user:
+    name: "{{ moodle_db_username }}"
+    password: "{{ moodle_db_password }}"
+    priv: "{{ moodle_db_name }}.*:ALL"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"

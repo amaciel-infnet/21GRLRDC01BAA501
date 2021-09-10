@@ -1,0 +1,42 @@
+---
+
+#Instalacao e Configuracao do Servidor WEB (LAMP)
+
+#Apache Configuration
+- name: APACHE> Instalando Apache, PHP e Mysql
+  apt: name={{ item }} update_cache=yes state=latest
+  loop: [ 'apache2', 'mysql-client', 'mysql-server', 'python3-pymysql', 'php', 'libapache2-mod-php' ]
+
+#Cria a pasta de arquivos do Site
+- name: APACHE> Criando a pasta do Site
+  file:
+    path: "/var/www/{{ http_host }}"
+    state: directory
+    owner: "root"
+    group: "root"
+    mode: '0755'
+
+#Criar o arquivo de configuracao do Apache para o Site
+- name: APACHE> Configurando o VHost do nosso Site
+  template:
+    src: "files/apache.conf.j2"
+    dest: "/etc/apache2/sites-available/{{ http_conf }}"
+    mode: '0640'
+
+#Desativa o site Default do Apache
+- name: APACHE> Desabilitando o Site default do Apache
+  command: /usr/sbin/a2dissite 000-default.conf
+  when: disable_default
+
+#Ativa o VHost de configuracao do Site
+- name: APACHE> Habilitando o nosso Site
+  command: /usr/sbin/a2ensite {{ http_conf }}
+  notify: Restart Apache
+
+#Abre a porta do VHost do Site
+- name: APACHE-UFW> Liberando a porta do nosso Site
+  ufw:
+    rule: allow
+    port: "{{ http_port }}"
+    proto: tcp
+  notify: Restart ufw

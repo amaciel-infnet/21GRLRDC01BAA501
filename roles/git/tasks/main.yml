@@ -1,0 +1,15 @@
+---
+
+### INSTALA GIT ###
+
+#GIT_REPO
+- name: GIT> Atualizando repositorio
+  apt_repository:
+    repo: 'ppa:git-core/ppa'
+    state: present
+
+- name: GIT> Instalando Git
+  apt:
+    name: git
+    state: present
+    update_cache: yes

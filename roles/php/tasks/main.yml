@@ -1,0 +1,6 @@
+---
+
+#Instala dependencias Php
+- name: Instalando pacotes PHP adicionais
+  apt: name={{ item }} update_cache=yes state=latest
+  loop: [ 'graphviz', 'aspell', 'ghostscript', 'clamav', 'php-pspell', 'php-curl', 'php-gd', 'php-intl', 'php-mysql', 'php-xml', 'php-xmlrpc', 'php-ldap', 'php-zip', 'php-soap', 'php-mbstring' ]

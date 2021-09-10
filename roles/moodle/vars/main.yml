@@ -1,0 +1,36 @@
+---
+#MOODLE-DB
+moodle_db_host:           localhost
+moodle_db_type:           mysqli
+moodle_db_prefix:         mdl_
+moodle_db_name:           moodle
+moodle_db_username:       moodleuser
+moodle_db_password:       'Qu@lP0d3R!2'
+
+#MOODLE-FOLDER-ROOT
+moodle_root_path:         /var/www/moodle
+moodle_root_owner:        'www-data'
+moodle_root_group:        root
+moodle_root_permissions:  '0755'
+
+#MOODLE-FOLDER-DATA
+moodle_dataroot_path:     /var/moodledata
+moodle_dataroot_user:     'www-data'
+moodle_dataroot_group:    'www-data'
+moodle_dataroot_permissions: '0777'
+
+#MOODLE-CONFIG
+moodle_lang:              pt_br
+moodle_wwwroot:           http://moodle.alexandre.local
+moodle_adminuser:         admin
+moodle_adminpass:         'M3sm0P@radO'
+moodle_adminemail:        "alexandre.maciel@al.infnet.edu.br"
+moodle_fullname:          "Moodle de Alexandre Maciel"
+moodle_shortname:         "MoodleAM"
+moodle_summary:           "INFNET PB501 Alexandre Maciel"
+
+#MOODLE-GIT-REPO Ultima Versao
+moodle_git_repository: git://git.moodle.org/moodle.git
+
+#MYSQL-ROOT
+mysql_root_password: "Um@Bo4Senha"

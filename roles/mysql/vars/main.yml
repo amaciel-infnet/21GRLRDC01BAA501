@@ -1,0 +1,5 @@
+---
+# vars file for server
+
+# Senha de Root do Mysql
+mysql_root_password: "Um@Bo4Senha"

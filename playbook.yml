@@ -1,0 +1,10 @@
+---
+- hosts: webapps
+  remote_user: devops
+  become: yes
+  roles:
+  - server
+  - php
+  - mysql
+  - git
+  - moodle

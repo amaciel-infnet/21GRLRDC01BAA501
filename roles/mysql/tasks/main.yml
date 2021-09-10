@@ -1,0 +1,26 @@
+---
+
+# MySQL Preparacao
+- name: Inserindo uma senha para o usuario Root do Mysql
+  mysql_user:
+    name: root
+    password: "{{ mysql_root_password }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  ignore_errors: yes
+
+# MySQL Preparacao
+- name: Remove usuarios genericos
+  mysql_user:
+    name: ''
+    host_all: yes
+    state: absent
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+# MySQL Preparacao
+- name: Remove o banco de testes
+  mysql_db:
+    name: test
+    state: absent
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
